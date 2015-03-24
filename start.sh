@@ -20,6 +20,6 @@ nginx -g 'daemon off;' &
 
 while [ 0 ]; do
   echo "Syncing bucket ${AWS_BUCKET}"
-  s3cmd --delete-removed --access_key=${AWS_ACCESS_KEY_ID} --secret_key=${AWS_ACCESS_SECRET_KEY} --no-progress sync s3://${AWS_BUCKET} /bucket
+  s3cmd --access_key=${AWS_ACCESS_KEY_ID} --secret_key=${AWS_ACCESS_SECRET_KEY} --no-progress sync s3://${AWS_BUCKET} /bucket
   sleep ${INTERVAL}
 done
