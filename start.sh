@@ -15,11 +15,10 @@
 trap "echo \"Sending SIGTERM to nginx\"; killall -s SIGTERM nginx" SIGTERM
 
 # Fire up nginx, but background it so we can loop through buckets on a timer
-mkdir -p /buckets
+mkdir -p /bucket
 nginx -g 'daemon off;' &
 
 while [ 0 ]; do
-  mkdir -p /buckets/${AWS_BUCKET}
   echo "Syncing bucket ${AWS_BUCKET}"
   s3cmd --delete-removed --access_key=${AWS_ACCESS_KEY_ID} --secret_key=${AWS_ACCESS_SECRET_KEY} --no-progress sync s3://${AWS_BUCKET} /bucket
   sleep ${INTERVAL}
