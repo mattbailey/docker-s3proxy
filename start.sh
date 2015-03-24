@@ -25,7 +25,7 @@ while [ 0 ]; do
   for bucket in $BUCKETS; do
     mkdir -p /buckets/${bucket}
     echo "Syncing bucket ${bucket}"
-    s3cmd --access_key=${AWS_ACCESS_KEY_ID} --secret_key=${AWS_ACCESS_SECRET_KEY} --no-progress sync s3://${bucket} /buckets/${bucket}
+    s3cmd --delete-after-fetch --access_key=${AWS_ACCESS_KEY_ID} --secret_key=${AWS_ACCESS_SECRET_KEY} --no-progress sync s3://${bucket} /buckets/${bucket}
   done
   sleep ${INTERVAL}
 done
