@@ -21,6 +21,6 @@ nginx -g 'daemon off;' &
 while [ 0 ]; do
   mkdir -p /buckets/${AWS_BUCKET}
   echo "Syncing bucket ${AWS_BUCKET}"
-  s3cmd --delete-after-fetch --access_key=${AWS_ACCESS_KEY_ID} --secret_key=${AWS_ACCESS_SECRET_KEY} --no-progress sync s3://${AWS_BUCKET} /buckets
+  s3cmd --access_key=${AWS_ACCESS_KEY_ID} --secret_key=${AWS_ACCESS_SECRET_KEY} --no-progress sync s3://${AWS_BUCKET} /buckets
   sleep ${INTERVAL}
 done
