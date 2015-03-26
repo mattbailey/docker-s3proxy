@@ -14,6 +14,9 @@
 # So that SIGTERM from docker propagates to nginx
 trap "echo \"Sending SIGTERM to nginx\"; killall -s SIGTERM nginx" SIGTERM
 
+[["$SSL_ONLY" == "true"]] && sed -ie "s/### SSL_ONLY/if (\$http_x_forwarded_proto != 'https') {rewrite ^ https://\$host\$request_uri? permanent;"/
+        }'
+
 # Fire up nginx, but background it so we can loop through buckets on a timer
 mkdir -p /bucket
 nginx -g 'daemon off;' &
