@@ -19,7 +19,6 @@ trap "echo \"Sending SIGTERM to nginx\"; killall -s SIGTERM nginx" SIGTERM
   /etc/nginx/nginx.conf
 
 # Fire up nginx, but background it so we can loop through buckets on a timer
-mkdir -p /bucket
 nginx -g 'daemon off;' &
 
 while [ 0 ]; do
